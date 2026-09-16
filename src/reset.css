@@ -1,0 +1,4 @@
+html, body, #root { min-height: 100%; margin: 0; padding: 0; }
+body { background: #0a0118; }
+button { margin: 0; text-transform: none; }
+svg { display: block; vertical-align: middle; }
