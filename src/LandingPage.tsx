@@ -27,11 +27,11 @@ function PageLink({ children, onClick, ...props }: LinkProps) {
   )
 }
 
-function NivasoMark({ className = '' }: { className?: string }) {
+function StilltypingMark({ className = '' }: { className?: string }) {
   return (
     <svg className={className} width="30" height="34" viewBox="0 0 30 34" fill="none" aria-hidden="true">
-      <path d="M4 26V9.5C4 6.5 7.4 4.8 9.8 6.6L21 15V5" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M26 8V24.5C26 27.5 22.6 29.2 20.2 27.4L9 19V29" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8 6h14a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5h-9l-7 5v-6a5 5 0 0 1-3-4V11a5 5 0 0 1 5-5Z" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+      <g fill="currentColor"><circle cx="9" cy="16" r="1.6" /><circle cx="15" cy="16" r="1.6" /><circle cx="21" cy="16" r="1.6" /></g>
     </svg>
   )
 }
@@ -110,7 +110,7 @@ function ProductPreview() {
       <div className="nl-preview-caption"><span className="nl-status-dot" /> A closer look at your workspace <span>Interactive preview · Sample data</span></div>
       <div className="nl-product">
         <aside className="nl-product-sidebar">
-          <div className="nl-preview-brand"><NivasoMark /><span>nivaso<span className="nl-workspace-label">Your workspace</span></span><ChevronDown size={14} /></div>
+          <div className="nl-preview-brand"><StilltypingMark /><span>stilltyping<span className="nl-workspace-label">Your workspace</span></span><ChevronDown size={14} /></div>
           <div className="nl-preview-workspace"><span className="nl-store-avatar">F</span><span>Fern & Co.<small>Business workspace</small></span></div>
           <p className="nl-sidebar-label">Workspace preview</p>
           <div className="nl-preview-tabs" role="tablist" aria-label="Explore the workspace">
@@ -139,11 +139,11 @@ function ProductPreview() {
           <div className="nl-preview-panel" key={tab} role="tabpanel" id={`nl-panel-${tab}`} aria-labelledby={`nl-tab-${tab}`} tabIndex={0}>
             {tab === 'conversations' ? (
               <div className="nl-conversation">
-                <div className="nl-conversation-heading"><span className="nl-chat-avatar">AL</span><div><strong>Alex Lee</strong><span>Website conversation</span></div><span className="nl-ai-tag"><Sparkles size={12} /> Nivaso assistant</span></div>
+                <div className="nl-conversation-heading"><span className="nl-chat-avatar">AL</span><div><strong>Alex Lee</strong><span>Website conversation</span></div><span className="nl-ai-tag"><Sparkles size={12} /> stilltyping assistant</span></div>
                 <div className="nl-messages">
                   <div className="nl-message-date">Example conversation</div>
                   <div className="nl-question" key={`question-${example}`}>{current.question}<span>Just now <CheckCheck size={13} /></span></div>
-                  <div className="nl-answer-row"><div className="nl-bot-avatar"><NivasoMark /></div><div className="nl-answer" aria-live="polite" aria-atomic="true">
+                  <div className="nl-answer-row"><div className="nl-bot-avatar"><StilltypingMark /></div><div className="nl-answer" aria-live="polite" aria-atomic="true">
                     {replyVisible ? <><p>{current.answer}</p><div className="nl-answer-source"><Check size={12} /> {current.source}</div></> : <span className="nl-typing" aria-label="Preparing sample reply"><i /><i /><i /></span>}
                   </div></div>
                   <div className={`nl-product-result ${replyVisible ? '' : 'nl-result-pending'}`} aria-hidden={!replyVisible}>
@@ -173,7 +173,7 @@ function ProductPreview() {
             )}
           </div>
         </div>
-        <aside className="nl-context-panel"><div className="nl-context-title"><Sparkles size={16} /> A little context.<br />A better conversation.</div><div className="nl-context-orbit"><span /><span /><NivasoMark /></div><p>Nivaso brings your business knowledge into the conversation.</p><div className="nl-context-item"><BookOpen size={15} /><span>Business knowledge</span><Check size={13} /></div><div className="nl-context-item"><Package size={15} /><span>Product information</span><Check size={13} /></div><div className="nl-context-item"><TicketCheck size={15} /><span>Human handoff</span><Check size={13} /></div><span className="nl-context-footer">Your business. In the loop.</span></aside>
+        <aside className="nl-context-panel"><div className="nl-context-title"><Sparkles size={16} /> A little context.<br />A better conversation.</div><div className="nl-context-orbit"><span /><span /><StilltypingMark /></div><p>stilltyping brings your business knowledge into the conversation.</p><div className="nl-context-item"><BookOpen size={15} /><span>Business knowledge</span><Check size={13} /></div><div className="nl-context-item"><Package size={15} /><span>Product information</span><Check size={13} /></div><div className="nl-context-item"><TicketCheck size={15} /><span>Human handoff</span><Check size={13} /></div><span className="nl-context-footer">Your business. In the loop.</span></aside>
       </div>
     </div>
   )
@@ -184,7 +184,7 @@ function ShoppingBagArt() {
 }
 
 const faqs = [
-  ['What is Nivaso?', 'Nivaso brings an AI customer assistant and your business tools into one workspace. Give it your business knowledge, manage your product catalog, and help your team handle customer questions.'],
+  ['What is stilltyping?', 'stilltyping brings an AI customer assistant and your business tools into one workspace. Give it your business knowledge, manage your product catalog, and help your team handle customer questions.'],
   ['How does the assistant learn about my business?', 'You add and maintain your business information in the knowledge base. The assistant uses relevant information from that knowledge and connected tools to respond. You can also set instructions for how it should help your customers.'],
   ['What happens when a question needs a person?', 'When the assistant cannot find enough information to answer, it can create a support ticket. Your team can review and resolve the request from the business portal.'],
   ['Can I choose which business tools I use?', 'Yes. Select the modules you need when you request an account. Your platform administrator reviews the request and enables the tools for your business. You can ask your administrator to enable more tools later.'],
@@ -199,7 +199,7 @@ export function LandingPage() {
 
   useEffect(() => {
     const oldTitle = document.title
-    document.title = 'Nivaso — A little less busy. A lot more business.'
+    document.title = 'stilltyping — A little less busy. A lot more business.'
     return () => { document.title = oldTitle }
   }, [])
 
@@ -219,11 +219,11 @@ export function LandingPage() {
   }, [])
 
   return (
-    <div className="nivaso-landing" ref={page} data-motion={motionPaused ? 'paused' : 'running'}>
+    <div className="stilltyping-landing" ref={page} data-motion={motionPaused ? 'paused' : 'running'}>
       <a className="nl-skip" href="#main">Skip to content</a>
       <header className="nl-header" onKeyDown={event => { if (event.key === 'Escape' && menuOpen) { setMenuOpen(false); menuButton.current?.focus() } }}>
         <div className="nl-header-inner">
-          <PageLink className="nl-wordmark" to="/" aria-label="Nivaso home"><NivasoMark /><span>nivaso</span></PageLink>
+          <PageLink className="nl-wordmark" to="/" aria-label="stilltyping home"><StilltypingMark /><span>stilltyping</span></PageLink>
           <nav className="nl-desktop-nav" aria-label="Main navigation"><a href="#features">Platform</a><a href="#how-it-works">How it works</a><a href="#faq">FAQs</a></nav>
           <div className="nl-header-actions"><PageLink className="nl-login" to="/login">Log in</PageLink><PageLink className="nl-button nl-button-small nl-button-glass" to="/signup">Get started<ArrowRight size={14} /></PageLink><button ref={menuButton} className="nl-menu-toggle" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="nl-mobile-menu" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={22} /> : <Menu size={22} />}</button></div>
         </div>
@@ -233,10 +233,10 @@ export function LandingPage() {
         <section className="nl-hero" aria-labelledby="nl-hero-title">
           <LightField />
           <div className="nl-hero-copy">
-            <a href="#demo" className="nl-announcement"><span><NivasoMark /></span>Meet your business’s new teammate<ArrowRight size={14} /></a>
+            <a href="#demo" className="nl-announcement"><span><StilltypingMark /></span>Meet your business’s new teammate<ArrowRight size={14} /></a>
             <h1 id="nl-hero-title">A little less busy.<br />A lot more business.</h1>
             <p>Your knowledge. Your customers. One helpful AI.<br className="nl-desktop-break" /> Turn everyday questions into conversations that move your business forward.</p>
-            <div className="nl-hero-actions"><PageLink className="nl-button nl-button-primary" to="/signup">Get started with Nivaso<ArrowRight size={17} /></PageLink><a className="nl-watch-link" href="#demo"><span><Play size={12} fill="currentColor" /></span>See it in action</a></div>
+            <div className="nl-hero-actions"><PageLink className="nl-button nl-button-primary" to="/signup">Get started with stilltyping<ArrowRight size={17} /></PageLink><a className="nl-watch-link" href="#demo"><span><Play size={12} fill="currentColor" /></span>See it in action</a></div>
             <span className="nl-hero-footnote">Made for your business. Ready to make it easier.</span>
           </div>
           <div className="nl-container"><ProductPreview /></div>
@@ -248,7 +248,7 @@ export function LandingPage() {
           <div className="nl-section-heading" data-reveal><span className="nl-section-symbol"><Sparkles size={21} /></span><h2 id="nl-features-title">Everything comes together.<br />So you can move forward.</h2><p>Give your assistant the context. Give your team the space.<br className="nl-desktop-break" /> Keep the details of your business connected.</p></div>
           <div className="nl-feature-grid" data-reveal>
             <article className="nl-feature nl-feature-knowledge">
-              <div className="nl-knowledge-art" aria-hidden="true"><div className="nl-art-doc nl-art-doc-back"><FileText size={18} /><span>Product information</span><i /><i /><i /></div><div className="nl-art-doc nl-art-doc-front"><BookOpen size={19} /><span>Your business knowledge</span><i /><i /><i /><b><Check size={11} /> Connected to your assistant</b></div><div className="nl-art-beam" /><div className="nl-art-node"><NivasoMark /></div></div>
+              <div className="nl-knowledge-art" aria-hidden="true"><div className="nl-art-doc nl-art-doc-back"><FileText size={18} /><span>Product information</span><i /><i /><i /></div><div className="nl-art-doc nl-art-doc-front"><BookOpen size={19} /><span>Your business knowledge</span><i /><i /><i /><b><Check size={11} /> Connected to your assistant</b></div><div className="nl-art-beam" /><div className="nl-art-node"><StilltypingMark /></div></div>
               <div className="nl-feature-copy"><BookOpen size={19} /><h3>It starts with what you know.</h3><p>Bring your business information into one knowledge base. Help your assistant answer with the context that makes your business yours.</p><a href="#demo">Explore the workspace<ArrowRight size={15} /></a></div>
             </article>
             <article className="nl-feature nl-feature-support"><div className="nl-support-art" aria-hidden="true"><div className="nl-art-message"><MessageCircle size={16} /><span>Could I speak with your team?</span></div><div className="nl-handoff-line"><i /><ArrowDown size={15} /></div><div className="nl-art-ticket"><span><TicketCheck size={17} /> Support ticket created</span><small>Your team can take it from here.</small><div><span className="nl-avatar">JD</span><span>Ready for a human touch</span><Check size={14} /></div></div></div><div className="nl-feature-copy"><TicketCheck size={19} /><h3>AI helps. Your team takes care.</h3><p>Some questions need a person. Turn those moments into support tickets, with a clear next step for your team.</p></div></article>
@@ -267,9 +267,9 @@ export function LandingPage() {
 
         <section className="nl-faq nl-container" id="faq" aria-labelledby="nl-faq-title"><div data-reveal><span className="nl-section-symbol"><CircleHelp size={22} /></span><h2 id="nl-faq-title">A few things<br />you might wonder.</h2><p>A little clarity before you get started.</p></div><div className="nl-faq-list" data-reveal>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={18} /></summary><p>{answer}</p></details>)}</div></section>
 
-        <section className="nl-final-cta" aria-labelledby="nl-cta-title"><div className="nl-final-glow" aria-hidden="true" /><div className="nl-container" data-reveal><span className="nl-final-mark"><NivasoMark /></span><h2 id="nl-cta-title">Make room for<br />what’s next.</h2><p>Your next chapter starts with a little help.</p><PageLink className="nl-button nl-button-primary" to="/signup">Get started with Nivaso<ArrowRight size={17} /></PageLink><span className="nl-cta-note">Create your account. We’ll help you get set up.</span></div></section>
+        <section className="nl-final-cta" aria-labelledby="nl-cta-title"><div className="nl-final-glow" aria-hidden="true" /><div className="nl-container" data-reveal><span className="nl-final-mark"><StilltypingMark /></span><h2 id="nl-cta-title">Make room for<br />what’s next.</h2><p>Your next chapter starts with a little help.</p><PageLink className="nl-button nl-button-primary" to="/signup">Get started with stilltyping<ArrowRight size={17} /></PageLink><span className="nl-cta-note">Create your account. We’ll help you get set up.</span></div></section>
       </main>
-      <footer className="nl-footer nl-container"><div className="nl-footer-top"><div><PageLink className="nl-wordmark" to="/" aria-label="Nivaso home"><NivasoMark /><span>nivaso</span></PageLink><p>A little help. A world of possibilities.</p></div><nav aria-label="Footer navigation"><a href="#features">Platform</a><a href="#how-it-works">How it works</a><a href="#faq">FAQs</a><PageLink to="/login">Log in</PageLink></nav></div><div className="nl-footer-bottom"><span>© {new Date().getFullYear()} Nivaso</span><div><button className="nl-motion-toggle" type="button" aria-pressed={motionPaused} onClick={() => setMotionPaused(!motionPaused)}>{motionPaused ? <Play size={12} /> : <Pause size={12} />}{motionPaused ? 'Resume animations' : 'Pause animations'}</button><PageLink to="/privacy">Privacy policy</PageLink></div></div></footer>
+      <footer className="nl-footer nl-container"><div className="nl-footer-top"><div><PageLink className="nl-wordmark" to="/" aria-label="stilltyping home"><StilltypingMark /><span>stilltyping</span></PageLink><p>A little help. A world of possibilities.</p></div><nav aria-label="Footer navigation"><a href="#features">Platform</a><a href="#how-it-works">How it works</a><a href="#faq">FAQs</a><PageLink to="/login">Log in</PageLink></nav></div><div className="nl-footer-bottom"><span>© {new Date().getFullYear()} stilltyping</span><div><button className="nl-motion-toggle" type="button" aria-pressed={motionPaused} onClick={() => setMotionPaused(!motionPaused)}>{motionPaused ? <Play size={12} /> : <Pause size={12} />}{motionPaused ? 'Resume animations' : 'Pause animations'}</button><PageLink to="/privacy">Privacy policy</PageLink></div></div></footer>
     </div>
   )
 }

@@ -1,6 +1,6 @@
-# Nivaso landing page
+# stilltyping landing page
 
-Standalone React + TypeScript + Vite project for the public Nivaso website.
+Standalone React + TypeScript + Vite project for the public stilltyping website.
 All source, styles, assets and build configuration live here; this project does
 not depend on the nivaso-frontend directory.
 
@@ -33,7 +33,7 @@ just the TypeScript checks.
 - `src/LandingPage.tsx`: landing page and interactive demos
 - `src/landing.css`: colors, layout and animation
 - `src/main.tsx`: application entry point
-- `public/nivaso.svg`: favicon
+- `public/stilltyping.svg`: favicon
 - `config.mjs`: business portal URL for login, signup and privacy links
 - `package-output.mjs`: production routing and portal redirects
 
