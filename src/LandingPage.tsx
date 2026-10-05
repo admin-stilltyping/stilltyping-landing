@@ -29,9 +29,10 @@ function PageLink({ children, onClick, ...props }: LinkProps) {
 
 function StilltypingMark({ className = '' }: { className?: string }) {
   return (
-    <svg className={className} width="30" height="34" viewBox="0 0 30 34" fill="none" aria-hidden="true">
-      <path d="M8 6h14a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5h-9l-7 5v-6a5 5 0 0 1-3-4V11a5 5 0 0 1 5-5Z" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-      <g fill="currentColor"><circle cx="9" cy="16" r="1.6" /><circle cx="15" cy="16" r="1.6" /><circle cx="21" cy="16" r="1.6" /></g>
+    <svg className={className} width="42" height="10.18" viewBox="0 0 594 144" fill="none" aria-hidden="true">
+      <circle cx="72" cy="72" r="72" fill="#FFFFFF" />
+      <circle cx="297" cy="72" r="72" fill="#B8A8FF" />
+      <circle cx="522" cy="72" r="72" fill="#6F58E7" />
     </svg>
   )
 }
