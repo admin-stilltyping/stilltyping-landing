@@ -29,11 +29,7 @@ function PageLink({ children, onClick, ...props }: LinkProps) {
 
 function StilltypingMark({ className = '' }: { className?: string }) {
   return (
-    <svg className={className} width="42" height="10.18" viewBox="0 0 594 144" fill="none" aria-hidden="true">
-      <circle cx="72" cy="72" r="72" fill="#FFFFFF" />
-      <circle cx="297" cy="72" r="72" fill="#B8A8FF" />
-      <circle cx="522" cy="72" r="72" fill="#6F58E7" />
-    </svg>
+    <img className={`nl-brand-mark ${className}`} src="/stilltyping.png" width="32" height="32" alt="" aria-hidden="true" draggable={false} />
   )
 }
 
