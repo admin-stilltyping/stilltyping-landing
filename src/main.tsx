@@ -1,13 +1,11 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { LandingPage } from './LandingPage'
+import { createRoot, hydrateRoot } from 'react-dom/client'
+import { Site } from './Site'
 import './reset.css'
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <LandingPage />
-    </BrowserRouter>
-  </StrictMode>,
-)
+const root = document.getElementById('root')!
+const app = <StrictMode><Site pathname={window.location.pathname} /></StrictMode>
+
+// Production HTML already contains the page; development starts with an empty root.
+if (root.hasChildNodes()) hydrateRoot(root, app)
+else createRoot(root).render(app)
