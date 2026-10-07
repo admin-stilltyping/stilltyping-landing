@@ -48,22 +48,17 @@ The production preview is available at http://127.0.0.1:5176/.
 
 ## Deploy to the existing Vercel project
 
-Sign in to a Vercel account with access to the `admin-stilltyping` team, then
-link this checkout to the existing project:
+The GitHub repository is connected to Vercel project `stilltyping-landing`
+under team `admin-stilltyping`. Pull requests receive preview deployments;
+merging into `main` deploys production to `https://stilltyping.in`.
+Use the pull request's Vercel check to inspect the deployment and wait for
+the build and SEO checks before merging.
 
-```sh
-npx vercel@59.17.0 login
-npx vercel@59.17.0 link --project stilltyping-landing --scope admin-stilltyping
-```
-
-The project link is saved in `.vercel/project.json`, which is ignored by Git.
-It contains project identifiers only; authentication is managed by Vercel CLI.
-Build and check the production artifact before publishing:
+To check the production artifact locally:
 
 ```sh
 VERCEL_ENV=production npm run build
 npm test
-npx vercel@59.17.0 deploy --prebuilt --prod --scope admin-stilltyping
 ```
 
 Account actions continue to the business portal at
@@ -83,9 +78,12 @@ the sitemap and allows crawling. Missing URLs return the 404 document with an
 HTTP 404 status and `noindex`, instead of returning the homepage. `/login`,
 `/signup`, and `/privacy` continue to redirect to the business portal.
 
-The known `www.stilltyping.in`, `stilltyping-landing.vercel.app`, and
-`nivaso-landing.vercel.app` hosts redirect permanently to `https://stilltyping.in`.
-Preview deployment hostnames are left available for review. Builds with
+The `www.stilltyping.in` and `stilltyping-landing.vercel.app` hosts redirect
+permanently to `https://stilltyping.in`. The routing configuration also handles
+`nivaso-landing.vercel.app` if it is assigned to this project, but that older
+hostname currently serves a separate deployment: configure its redirect in
+the owning Vercel project. Preview deployment hostnames are left available for
+review. Builds with
 `VERCEL_ENV=preview` emit `noindex` metadata and an `X-Robots-Tag: noindex` header;
 build production artifacts with `VERCEL_ENV=production` (or unset locally).
 The canonical domain remains `stilltyping.in` in both cases.
