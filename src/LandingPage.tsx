@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, type LinkProps } from 'react-router-dom'
+import { PageLink } from './PageLink'
+import { ProductLinks } from './ProductLinks'
 import {
   ArrowDown, ArrowRight, BookOpen, Check, CheckCheck, ChevronDown,
   CircleHelp, FileText, Layers3, LayoutDashboard, Menu, MessageCircle,
@@ -8,24 +9,6 @@ import {
 } from 'lucide-react'
 import './landing.css'
 
-
-/** Leave the long landing page at the top of the destination, including footer links. */
-function PageLink({ children, onClick, ...props }: LinkProps) {
-  const portalUrl = import.meta.env.VITE_PUBLIC_PORTAL_URL?.replace(/\/$/, '')
-  const to = portalUrl && typeof props.to === 'string' && ['/login', '/signup', '/privacy'].includes(props.to)
-    ? `${portalUrl}${props.to}`
-    : props.to
-  return (
-    <Link {...props} to={to} onClick={event => {
-      onClick?.(event)
-      if (!event.defaultPrevented && event.button === 0 && !event.metaKey &&
-          !event.ctrlKey && !event.shiftKey && !event.altKey &&
-          (!props.target || props.target === '_self')) {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-      }
-    }}>{children}</Link>
-  )
-}
 
 function StilltypingMark({ className = '' }: { className?: string }) {
   return (
@@ -65,7 +48,7 @@ const examples = [
   {
     label: 'Product question', question: 'Is the Everyday Tote available in olive?',
     answer: 'Yes! The Everyday Tote comes in olive. It’s made from recycled cotton and has a roomy inside pocket.',
-    source: 'Product catalog', detail: 'Everyday Tote', meta: 'Olive / Recycled cotton', price: '₹1,290',
+    source: 'Business knowledge', detail: 'Everyday Tote', meta: 'Olive / Recycled cotton', price: '₹1,290',
   },
   {
     label: 'Store information', question: 'What time does your store open on Saturday?',
@@ -195,12 +178,6 @@ export function LandingPage() {
   const page = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const oldTitle = document.title
-    document.title = 'stilltyping — A little less busy. A lot more business.'
-    return () => { document.title = oldTitle }
-  }, [])
-
-  useEffect(() => {
     const nodes = page.current?.querySelectorAll<HTMLElement>('[data-reveal]')
     if (!nodes || !('IntersectionObserver' in window)) return
     const observer = new IntersectionObserver(entries => {
@@ -231,10 +208,10 @@ export function LandingPage() {
           <LightField />
           <div className="nl-hero-copy">
             <a href="#demo" className="nl-announcement"><span><StilltypingMark /></span>Meet your business’s new teammate<ArrowRight size={14} /></a>
-            <h1 id="nl-hero-title">A little less busy.<br />A lot more business.</h1>
-            <p>Your knowledge. Your customers. One helpful AI.<br className="nl-desktop-break" /> Turn everyday questions into conversations that move your business forward.</p>
+            <h1 id="nl-hero-title">AI customer support.<br />Built around your business.</h1>
+            <p>Answer customer questions with your business knowledge.<br className="nl-desktop-break" /> Add website chat, capture enquiries, and give your team a clear next step.</p>
             <div className="nl-hero-actions"><PageLink className="nl-button nl-button-primary" to="/signup">Get started with stilltyping<ArrowRight size={17} /></PageLink><a className="nl-watch-link" href="#demo"><span><Play size={12} fill="currentColor" /></span>See it in action</a></div>
-            <span className="nl-hero-footnote">Made for your business. Ready to make it easier.</span>
+            <span className="nl-hero-footnote">A little less busy. A lot more business.</span>
           </div>
           <div className="nl-container"><ProductPreview /></div>
         </section>
@@ -261,6 +238,8 @@ export function LandingPage() {
             { icon: MessageCircle, title: 'Start a conversation', copy: 'Try real customer questions, review the answers and refine your knowledge.' },
           ].map(({ icon: Icon, title, copy }, index) => <article key={title}><div className="nl-step-top"><span><Icon size={23} /></span><b>0{index + 1}</b></div><h3>{title}</h3><p>{copy}</p></article>)}</div>
         </section>
+
+        <section className="nl-product-guides nl-container" id="guides" aria-labelledby="guides-title"><h2 id="guides-title">Find the right starting point.</h2><ProductLinks /></section>
 
         <section className="nl-faq nl-container" id="faq" aria-labelledby="nl-faq-title"><div data-reveal><span className="nl-section-symbol"><CircleHelp size={22} /></span><h2 id="nl-faq-title">A few things<br />you might wonder.</h2><p>A little clarity before you get started.</p></div><div className="nl-faq-list" data-reveal>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<Plus size={18} /></summary><p>{answer}</p></details>)}</div></section>
 

@@ -1,0 +1,61 @@
+/* The product guides share the existing plum palette and Space Grotesk headings.
+   A reading column and example conversation keep the focus on real workflows. */
+.nl-product-links { border-top: 1px solid var(--nl-line); }
+.nl-product-links > a { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 25px 0; border-bottom: 1px solid var(--nl-line); }
+.nl-product-links strong { display: block; font-size: 20px; font-weight: 500; color: var(--nl-text); }
+.nl-product-links a > span > span { display: block; max-width: 740px; margin-top: 5px; color: var(--nl-muted); font-size: 14px; }
+.nl-product-links a:hover strong { color: var(--nl-lavender); }
+.nl-product-links svg { color: var(--nl-lavender); }
+.nl-product-guides { padding-top: 80px; }
+.nl-product-guides > h2, .nl-guide-related > h2 { margin-bottom: 26px; font-size: 32px; font-weight: 500; letter-spacing: -1px; }
+.nl-breadcrumb { display: flex; flex-wrap: wrap; gap: 14px; padding-top: 34px; color: var(--nl-muted); font-size: 13px; }
+.nl-breadcrumb a:hover { color: var(--nl-lavender); }
+.nl-guide-hero { display: grid; grid-template-columns: 1.35fr 1fr; align-items: center; gap: 70px; padding: 60px 0 80px; border-bottom: 1px solid var(--nl-line); }
+.nl-guide h1 { font-size: clamp(38px, 4.3vw, 60px); font-weight: 500; line-height: 1.1; letter-spacing: -.045em; text-wrap: balance; }
+.nl-guide-hero > div > p { margin-top: 24px; color: var(--nl-muted); font-size: 17px; line-height: 1.8; }
+.nl-guide-hero .nl-button { margin-top: 30px; }
+.nl-guide-note { display: block; font-size: 12px; color: var(--nl-muted); margin-top: 14px; }
+.nl-guide-conversation { background: var(--nl-panel); padding: 28px; border: 1px solid var(--nl-line); border-radius: 18px; }
+.nl-guide-example-label { font-size: 13px; color: var(--nl-muted); }
+.nl-guide-conversation p { font-size: 15px; line-height: 1.7; padding: 18px; border-radius: 12px; }
+.nl-guide-conversation .nl-guide-question { background: #382852; margin: 24px 0 18px 24px; }
+.nl-guide-conversation .nl-guide-answer { background: #21182f; margin-right: 16px; }
+.nl-guide-conversation small { display: block; margin-top: 24px; font-size: 12px; color: var(--nl-muted); line-height: 1.7; }
+.nl-guide-body { display: grid; grid-template-columns: 235px minmax(0, 1fr); gap: 80px; padding-top: 64px; }
+.nl-guide-contents { display: flex; flex-direction: column; align-self: start; gap: 16px; font-size: 14px; }
+.nl-guide-contents > span { color: var(--nl-lavender); }
+.nl-guide-contents a { color: var(--nl-muted); }
+.nl-guide-contents a:hover { color: var(--nl-text); }
+.nl-guide-copy { max-width: 730px; }
+.nl-guide-copy section { margin-bottom: 52px; }
+.nl-guide-copy h2 { font-size: 30px; line-height: 1.25; font-weight: 500; letter-spacing: -.7px; margin-bottom: 21px; }
+.nl-guide-copy p, .nl-guide-copy li { color: #bdb3ce; font-size: 16px; line-height: 1.85; }
+.nl-guide-copy p + p { margin-top: 20px; }
+.nl-guide-copy :is(ul, ol) { padding-left: 22px; }
+.nl-guide-copy li { padding-left: 8px; margin-block: 14px; }
+.nl-guide-copy li::marker { color: var(--nl-lavender); }
+.nl-guide-faq { padding-block: 24px; border-top: 1px solid var(--nl-line); }
+.nl-guide-faq h3 { font-size: 19px; font-weight: 500; margin-bottom: 12px; }
+.nl-guide-related { margin: 24px 0 72px; }
+.nl-not-found { padding-block: 90px; min-height: 70vh; }
+.nl-not-found > p { max-width: 600px; color: var(--nl-muted); margin: 24px 0; }
+.nl-not-found .nl-product-links { margin-top: 60px; }
+@media (max-width: 900px) {
+  .nl-guide-hero { gap: 32px; }
+  .nl-guide-body { grid-template-columns: 180px minmax(0, 1fr); gap: 40px; }
+}
+@media (max-width: 760px) {
+  .nl-guide .nl-header-inner { gap: 12px; }
+  .nl-guide .nl-header-inner .nl-button { font-size: 11px; padding-inline: 12px; }
+  .nl-guide .nl-header-inner .nl-button svg { display: none; }
+  .nl-guide-hero { grid-template-columns: 1fr; padding-block: 36px 45px; }
+  .nl-guide-hero > div > p { font-size: 16px; }
+  .nl-guide-conversation { padding: 22px; }
+  .nl-guide-body { grid-template-columns: 1fr; gap: 38px; padding-top: 38px; }
+  .nl-guide-contents { padding-bottom: 26px; border-bottom: 1px solid var(--nl-line); }
+  .nl-guide-copy h2 { font-size: 27px; }
+  .nl-product-guides { padding-top: 56px; }
+  .nl-product-links strong { font-size: 19px; }
+  .nl-product-links a > span > span { font-size: 13px; }
+  .nl-guide-related { margin-bottom: 50px; }
+}

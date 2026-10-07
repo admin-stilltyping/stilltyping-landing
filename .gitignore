@@ -1,6 +1,7 @@
 node_modules/
 .vercel/
 dist/
+.ssr/
 .env*
 *.local
 *.log
