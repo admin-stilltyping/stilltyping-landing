@@ -12,7 +12,7 @@ await cp(source, output, { recursive: true })
 // default domain accessible until the custom domain's DNS has been migrated.
 // Do not use an SPA catch-all: missing public URLs must remain real 404s.
 const redirects = [
-  ...['login', 'signup', 'privacy'].map(path => `/${path} ${portalUrl}/${path} 302!`),
+  ...['login', 'signup'].map(path => `/${path} ${portalUrl}/${path} 302!`),
   '/index.html / 301!',
   ...publicPages.filter(page => page.path !== '/').flatMap(page => [
     `${page.path}/index.html ${page.path} 301!`,

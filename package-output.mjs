@@ -36,7 +36,7 @@ const config = {
     // Exact legacy hosts only: preview deployment hosts stay available for review.
     ...redirectHosts.map(host => ({ src: '/(.*)', has: [{ type: 'host', value: host }], status: 308, headers: { Location: siteUrl + '/$1' } })),
     ...(preview ? [{ src: '/.*', headers: { 'X-Robots-Tag': 'noindex' }, continue: true }] : []),
-    ...['login', 'signup', 'privacy'].map(path => ({ src: '/' + path + '/?', status: 307, headers: { Location: portalUrl + '/' + path } })),
+    ...['login', 'signup'].map(path => ({ src: '/' + path + '/?', status: 307, headers: { Location: portalUrl + '/' + path } })),
     { src: '/index\\.html', status: 308, headers: { Location: '/' } },
     ...publicPages.filter(page => page.path !== '/').flatMap(page => [
       { src: page.path + '/(?:index\\.html)?', status: 308, headers: { Location: page.path } },

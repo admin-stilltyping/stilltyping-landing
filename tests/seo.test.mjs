@@ -7,7 +7,7 @@ import { createPreviewServer } from '../scripts/preview.mjs'
 import { renderMetadata } from '../scripts/seo.mjs'
 
 const origin = 'https://stilltyping.in'
-const paths = ['/', '/ai-customer-support', '/website-chatbot', '/appointment-booking']
+const paths = ['/', '/ai-customer-support', '/website-chatbot', '/appointment-booking', '/privacy']
 let server, base
 before(async () => {
   server = await createPreviewServer()
@@ -74,7 +74,7 @@ test('unknown URLs return a real, non-indexable 404 instead of the homepage', as
 })
 
 test('legacy hosts and duplicate path forms redirect to canonical URLs; portal actions still work', async () => {
-  for (const host of ['www.stilltyping.in', 'stilltyping-landing.vercel.app', 'nivaso-landing.vercel.app']) {
+  for (const host of ['www.stilltyping.in', 'stilltyping-landing.vercel.app']) {
     // Node fetch does not forward a caller-supplied Host header.
     const response = await new Promise((resolve, reject) => {
       get(base + '/website-chatbot?utm_source=test', { headers: { host } }, response => {
@@ -90,10 +90,10 @@ test('legacy hosts and duplicate path forms redirect to canonical URLs; portal a
     assert.equal(response.status, 308)
     assert.equal(response.headers.get('location'), '/website-chatbot')
   }
-  for (const path of ['/login', '/signup/', '/privacy']) {
+  for (const path of ['/login', '/signup/']) {
     const response = await fetch(base + path, { redirect: 'manual' })
     assert.equal(response.status, 307)
-    assert.equal(response.headers.get('location'), 'https://nivaso-frontend.vercel.app' + path.replace(/\/$/, ''))
+    assert.equal(response.headers.get('location'), 'https://app.stilltyping.in' + path.replace(/\/$/, ''))
   }
 })
 
@@ -103,7 +103,7 @@ test('all public pages are internally discoverable and their local assets exist'
     for (const link of paths.filter(item => item !== path)) assert.ok(html.includes('href="' + link + '"'), path + ' links to ' + link)
     const assets = [...html.matchAll(/(?:src|href)="(\/(?:assets\/[^"]+|stilltyping\.png))"/g)].map(match => match[1])
     for (const asset of new Set(assets)) assert.equal((await fetch(base + asset)).status, 200, asset)
-    const signup = 'href="https://nivaso-frontend.vercel.app/signup"'
+    const signup = 'href="https://app.stilltyping.in/signup"'
     assert.ok(html.includes(signup), path + ' preserves signup')
   }
 })
@@ -122,4 +122,14 @@ test('appointment copy preserves the staff-confirmation and availability limitat
   assert.match(html, /does not check a live staff calendar/)
   const config = JSON.parse(await readFile(new URL('../.vercel/output/config.json', import.meta.url), 'utf8'))
   assert.equal(config.routes.at(-1).status, 404)
+})
+
+
+test('privacy is public on the Stilltyping domain with the approved contact', async () => {
+  const response = await fetch(base + '/privacy', { redirect: 'manual' })
+  assert.equal(response.status, 200)
+  assert.equal(response.headers.get('location'), null)
+  const html = await response.text()
+  assert.match(html, /support@stilltyping\.in/)
+  assert.doesNotMatch(html, /nivaso/i)
 })

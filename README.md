@@ -2,11 +2,11 @@
 
 Standalone React + TypeScript + Vite project for the public stilltyping website.
 All source, styles, assets and build configuration live here; this project does
-not depend on the nivaso-frontend directory.
+not depend on the business portal source directory.
 
 Netlify deployment: https://stilltyping-landing.netlify.app/
 
-Canonical domain: https://stilltyping.in/ (DNS still points to Vercel until cutover).
+Canonical domain: https://stilltyping.in/.
 
 ## Local development
 
@@ -48,48 +48,44 @@ The production preview is available at http://127.0.0.1:5176/.
 - `package-output.mjs`: prerendered HTML, sitemap, robots and Vercel routing
 - `scripts/preview.mjs`: local preview of the generated Vercel route order
 
-## Deploy to Netlify
+## Deploy to Netlify through GitHub
 
-The existing landing page was published to the `stilltyping-landing` project in
-`Muthuram05's team` on 2026-10-10. Project ID:
-`1b251f54-640e-4b9a-9843-7de9576834a2`. This is a manual static deployment;
-Git-based continuous deployment has not been connected.
+Connect `admin-stilltyping/stilltyping-landing` to the Stilltyping Netlify team
+(`admin-stilltyping`) and use `main` as the production branch. Deploy from GitHub;
+do not upload build archives manually. The root `netlify.toml` configures:
 
-Run `npm ci`, `npm run build:netlify`, then `npm test`. Upload only the generated
-`dist/` directory (or a ZIP of its contents) through Netlify's manual deployment
-flow. It contains prerendered public pages, assets, `_redirects` and `_headers`;
-there is no server runtime or private configuration in this artifact.
+- Build command: `npm run build:netlify`
+- Publish directory: `dist`
+- Node version: `22.12.0`
+- Domains: `stilltyping.in` and `www.stilltyping.in`, with the apex primary
 
-For Git-connected deployments, `netlify.toml` sets the build command, Node version,
-and publish directory. Netlify deploy previews and branch deployments are marked
-`noindex`. Production retains the `https://stilltyping.in` canonical domain.
-Point the domain's DNS to the verified Netlify project only after checking the
-Netlify deployment URL. Deploying the landing page does not move the application:
-login, signup and privacy still redirect to `https://nivaso-frontend.vercel.app`.
+Run `npm ci`, `npm run build:netlify`, and `npm test` before publishing changes.
+The build contains prerendered public pages, assets, `_redirects`, and `_headers`.
+Netlify deploy previews and branch deployments are marked `noindex`.
+Production retains the `https://stilltyping.in` canonical domain.
 
-## Existing Vercel deployment
+`/privacy` is served directly by this project and lists `support@stilltyping.in`.
+`/login` and `/signup` redirect to `https://app.stilltyping.in`. The business
+portal and API are separate deployments; publishing this landing page does not
+restore an unavailable API.
 
-The GitHub repository is connected to Vercel project `stilltyping-landing`
-under team `admin-stilltyping`. Pull requests receive preview deployments;
-merging into `main` deploys production to `https://stilltyping.in`.
-Use the pull request's Vercel check to inspect the deployment and wait for
-the build and SEO checks before merging.
+GoDaddy is the registrar. Preserve MX, SPF, DKIM, DMARC, autodiscovery,
+domain-connect, Google verification, and CAA records when changing DNS providers
+or Netlify teams. The old manual projects in Muthuram05's team were deleted on
+2026-10-10 at the owner's request. The DNS zone was retained to preserve email;
+its ownership must be handled when adding domains in the Stilltyping team.
 
-To check the production artifact locally:
+## Existing Vercel integration
 
-```sh
-VERCEL_ENV=production npm run build
-npm test
-```
-
-Account actions continue to the business portal at
-https://nivaso-frontend.vercel.app. Changing the local project location does
-not change the current production deployment.
+The repository also has a Vercel integration under `admin-stilltyping`.
+Vercel builds are separate from Netlify deployments. The source still supports
+`npm run build` for the Vercel artifact and local HTTP tests, but the production
+Netlify project must use `npm run build:netlify`.
 
 ## SEO and public pages
 
-The public routes are `/`, `/ai-customer-support`, `/website-chatbot`, and
-`/appointment-booking`. Each has its own title, description, canonical URL,
+The public routes are `/`, `/ai-customer-support`, `/website-chatbot`,
+`/appointment-booking`, and `/privacy`. Each has its own title, description, canonical URL,
 Open Graph and Twitter metadata, and Organization/WebSite/WebPage JSON-LD.
 Guide pages also include breadcrumbs. The existing square logo is used for
 social previews; no customer ratings, prices or performance claims are invented.
@@ -97,14 +93,11 @@ social previews; no customer ratings, prices or performance claims are invented.
 `sitemap.xml` includes only these canonical public URLs. `robots.txt` points to
 the sitemap and allows crawling. Missing URLs return the 404 document with an
 HTTP 404 status and `noindex`, instead of returning the homepage. `/login`,
-`/signup`, and `/privacy` continue to redirect to the business portal.
+and `/signup` redirect to the business portal. `/privacy` stays on this site.
 
 The `www.stilltyping.in` and `stilltyping-landing.vercel.app` hosts redirect
-permanently to `https://stilltyping.in`. The routing configuration also handles
-`nivaso-landing.vercel.app` if it is assigned to this project, but that older
-hostname currently serves a separate deployment: configure its redirect in
-the owning Vercel project. Preview deployment hostnames are left available for
-review. Builds with
+permanently to `https://stilltyping.in`. Preview deployment hostnames are left
+available for review. Builds with
 `VERCEL_ENV=preview` emit `noindex` metadata and an `X-Robots-Tag: noindex` header;
 build production artifacts with `VERCEL_ENV=production` (or unset locally).
 The canonical domain remains `stilltyping.in` in both cases.

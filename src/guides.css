@@ -59,3 +59,14 @@
   .nl-product-links a > span > span { font-size: 13px; }
   .nl-guide-related { margin-bottom: 50px; }
 }
+
+.nl-privacy { max-width: 940px; padding-bottom: 80px; }
+.nl-privacy h1 { margin-top: 36px; font-size: clamp(36px, 6vw, 58px); letter-spacing: -.04em; }
+.nl-privacy-updated { margin-top: 12px !important; color: #b8adc9; }
+.nl-privacy article { margin-top: 44px; max-width: 760px; }
+.nl-privacy article section { margin-bottom: 32px; scroll-margin-top: 100px; }
+.nl-privacy article h2 { margin-bottom: 12px; font-size: 23px; letter-spacing: -.025em; }
+.nl-privacy article p, .nl-privacy article li { color: #c8bfd8; font-size: 16px; line-height: 1.85; }
+.nl-privacy article ul { padding-left: 24px; margin-top: 14px; }
+.nl-privacy article li { margin-bottom: 8px; }
+.nl-privacy article a { color: #dbc6ff; text-decoration: underline; }
