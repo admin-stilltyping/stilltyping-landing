@@ -6,6 +6,7 @@ import { escapeHtml, renderMetadata } from './scripts/seo.mjs'
 const output = new URL('./.vercel/output/static/', import.meta.url)
 const template = await readFile(new URL('index.html', output), 'utf8')
 const preview = process.env.VERCEL_ENV === 'preview'
+  || ['deploy-preview', 'branch-deploy'].includes(process.env.CONTEXT)
 if (!template.includes('<!--seo-head-->') || !template.includes('<div id="root"></div>')) {
   throw new Error('The HTML template is missing a prerendering placeholder.')
 }

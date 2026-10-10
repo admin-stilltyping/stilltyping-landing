@@ -4,7 +4,9 @@ Standalone React + TypeScript + Vite project for the public stilltyping website.
 All source, styles, assets and build configuration live here; this project does
 not depend on the nivaso-frontend directory.
 
-Live site and canonical domain: https://stilltyping.in/
+Netlify deployment: https://stilltyping-landing.netlify.app/
+
+Canonical domain: https://stilltyping.in/ (DNS still points to Vercel until cutover).
 
 ## Local development
 
@@ -46,7 +48,26 @@ The production preview is available at http://127.0.0.1:5176/.
 - `package-output.mjs`: prerendered HTML, sitemap, robots and Vercel routing
 - `scripts/preview.mjs`: local preview of the generated Vercel route order
 
-## Deploy to the existing Vercel project
+## Deploy to Netlify
+
+The existing landing page was published to the `stilltyping-landing` project in
+`Muthuram05's team` on 2026-10-10. Project ID:
+`1b251f54-640e-4b9a-9843-7de9576834a2`. This is a manual static deployment;
+Git-based continuous deployment has not been connected.
+
+Run `npm ci`, `npm run build:netlify`, then `npm test`. Upload only the generated
+`dist/` directory (or a ZIP of its contents) through Netlify's manual deployment
+flow. It contains prerendered public pages, assets, `_redirects` and `_headers`;
+there is no server runtime or private configuration in this artifact.
+
+For Git-connected deployments, `netlify.toml` sets the build command, Node version,
+and publish directory. Netlify deploy previews and branch deployments are marked
+`noindex`. Production retains the `https://stilltyping.in` canonical domain.
+Point the domain's DNS to the verified Netlify project only after checking the
+Netlify deployment URL. Deploying the landing page does not move the application:
+login, signup and privacy still redirect to `https://nivaso-frontend.vercel.app`.
+
+## Existing Vercel deployment
 
 The GitHub repository is connected to Vercel project `stilltyping-landing`
 under team `admin-stilltyping`. Pull requests receive preview deployments;
