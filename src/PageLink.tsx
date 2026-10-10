@@ -4,7 +4,7 @@ type PageLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> & { t
 
 export function PageLink({ to, ...props }: PageLinkProps) {
   const portalUrl = import.meta.env.VITE_PUBLIC_PORTAL_URL?.replace(/\/$/, '')
-  const href = portalUrl && ['/login', '/signup', '/privacy'].includes(to)
+  const href = portalUrl && ['/login', '/signup'].includes(to)
     ? `${portalUrl}${to}`
     : to
   // Each public URL has its own HTML and metadata, including without JavaScript.

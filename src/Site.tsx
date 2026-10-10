@@ -1,5 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import type { ReactNode } from 'react'
+import { PrivacyPage } from './PrivacyPage'
 import { LandingPage } from './LandingPage'
 import { PageLink } from './PageLink'
 import { ProductLinks } from './ProductLinks'
@@ -40,6 +41,7 @@ function GuidePage({ guide }: { guide: ProductGuide }) {
 export function Site({ pathname }: { pathname: string }) {
   const path = pathname.replace(/\/$/, '') || '/'
   if (path === '/') return <LandingPage />
+  if (path === '/privacy') return <GuideChrome><PrivacyPage /></GuideChrome>
   const guide = guides.find(item => item.path === path)
   if (guide) return <GuidePage guide={guide} />
   return <GuideChrome><main id="main" className="nl-container nl-not-found"><h1>That page isn’t here.</h1><p>Find customer support, website chat, and appointment requests from the stilltyping homepage.</p><a href="/" className="nl-button nl-button-primary">Go to the homepage</a><ProductLinks /></main></GuideChrome>

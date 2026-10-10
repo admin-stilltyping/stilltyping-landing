@@ -148,4 +148,9 @@ export const notFoundMetadata: PageMetadata = {
   description: 'This page could not be found. Explore stilltyping customer support, website chat, and appointment requests.',
 }
 
-export const publicPages: PageMetadata[] = [homeMetadata, ...guides]
+export const privacyMetadata = {
+  path: '/privacy', label: 'Privacy policy', title: 'Privacy Policy | stilltyping',
+  description: 'How Stilltyping collects, uses, protects, and handles requests about business and customer information.',
+}
+
+export const publicPages: PageMetadata[] = [homeMetadata, ...guides, privacyMetadata]
